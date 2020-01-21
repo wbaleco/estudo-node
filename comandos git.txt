@@ -1,0 +1,11 @@
+COMANDOS GIT
+
+1 - git init = iniciar repositório
+2 - git status = mostra pastas e arquivos e seu estado
+//OS comandos 3 e 4 servem para edenficar quem está realizando os comandos
+3 - git config --global user.name "Nome-usuário"
+4 - git config --global user.email "email-usuário"
+5 - git add . = adicionar todos os arquivos e pastas
+6 - git commit -m = gravar os commits
+7 - git push
+8 - git log = mostrar quem fez e o que fez

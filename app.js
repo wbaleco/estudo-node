@@ -1,7 +1,20 @@
 const express = require('express');
 const app = express();
 
-const mysql = require('mysql');
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/src/home.html");
+});
+
+app.get('/sobre', (req, res) => {
+    res.sendFile(__dirname + "/src/sobre.html");
+});
+
+app.get('/contato', (req, res) => {
+    res.sendFile(__dirname + "/src/contato.html");
+});
+
+/* const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'wbaleco',
@@ -16,4 +29,8 @@ connection.connect(function(err) {
     }
 
     console.log('connected as id ' + connection.threadId);
+}); */
+
+app.listen(3000, () => {
+    console.log(`Server started on port`);
 });
