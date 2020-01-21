@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const mysql = require('mysql');
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/src/home.html");
@@ -14,7 +14,7 @@ app.get('/contato', (req, res) => {
     res.sendFile(__dirname + "/src/contato.html");
 });
 
-/* const mysql = require('mysql');
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'wbaleco',
@@ -29,7 +29,17 @@ connection.connect(function(err) {
     }
 
     console.log('connected as id ' + connection.threadId);
-}); */
+});
+
+connection.query('SELECT * FROM pagamentos', function(err, rows, fields) {
+    if (!err) {
+        console.log("Resultado :", rows);
+    } else {
+        console.log("Erro ao pesquisar");
+
+    }
+
+});
 
 app.listen(3000, () => {
     console.log(`Server started on port`);
