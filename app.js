@@ -31,7 +31,8 @@ connection.connect(function(err) {
     console.log('connected as id ' + connection.threadId);
 });
 
-connection.query('SELECT * FROM pagamentos', function(err, rows, fields) {
+//SELECT
+connection.query('SELECT * FROM users', function(err, rows, fields) {
     if (!err) {
         console.log("Resultado :", rows);
     } else {
@@ -39,6 +40,16 @@ connection.query('SELECT * FROM pagamentos', function(err, rows, fields) {
 
     }
 
+});
+//INSERT    
+connection.query("INSERT INTO users(nome, email) VALUES ('Walter', 'wbaleco@gmail.com')", function(err, result) {
+
+
+    if (!err) {
+        console.log("Cadastro realizado com sucesso");
+    } else {
+        console.log("Erro ao tentar cadastrar");
+    }
 });
 
 app.listen(3000, () => {
