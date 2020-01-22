@@ -52,6 +52,14 @@ connection.query("INSERT INTO users(nome, email) VALUES ('Walter', 'wbaleco@gmai
     }
 });
 
+connection.query("UPDATE users set nome = 'Walter Baleco' where id = 1", function(err, result) {
+    if (!err) {
+        console.log("Alteração realizada com sucesso");
+    } else {
+        console.log("Erro ao tentar alterar");
+    }
+});
+
 app.listen(3000, () => {
     console.log(`Server started on port`);
 });
