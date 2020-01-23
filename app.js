@@ -28,7 +28,7 @@ sequelize.authenticate().then(function(err) {
     console.error('Erro ao tentar conectar com banco:', error);
 });
 
-const User = sequelize.define('pagamentos', {
+const Pagamento = sequelize.define('pagamentos', {
     // Model attributes are defined here
     nome: {
         type: DataTypes.STRING,
@@ -40,6 +40,8 @@ const User = sequelize.define('pagamentos', {
     }
 
 });
+
+Pagamento.sync({ force: true });
 
 
 /* const connection = mysql.createConnection({
