@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const Sequelize = require('sequelize');
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/src/home.html");
@@ -14,8 +15,22 @@ app.get('/contato', (req, res) => {
     res.sendFile(__dirname + "/src/contato.html");
 });
 
+const sequelize = new Sequelize('gerenciadorfinanceiro', 'wbaleco', 'B@rB@r@1997', {
+    host: 'localhost',
+    dialect: 'mysql'
+});
 
-const connection = mysql.createConnection({
+sequelize.authenticate().then(function(err) {
+    console.log('Connection has been established successfully.');
+
+}).catch(function(error) {
+    console.error('Unable to connect to the database:', error);
+});
+
+
+
+
+/* const connection = mysql.createConnection({
     host: 'localhost',
     user: 'wbaleco',
     password: 'B@rB@r@1997',
@@ -29,10 +44,10 @@ connection.connect(function(err) {
     }
 
     console.log('connected as id ' + connection.threadId);
-});
+}); */
 
 //SELECT
-connection.query('SELECT * FROM users', function(err, rows, fields) {
+/* connection.query('SELECT * FROM users', function(err, rows, fields) {
     if (!err) {
         console.log("Resultado :", rows);
     } else {
@@ -67,7 +82,7 @@ connection.query("DELETE FROM users where id = 2", (err, result) => {
         console.log("Erro ao tentar excluir usuário");
     }
 });
-
+ */
 app.listen(3000, () => {
     console.log(`Server started on port`);
 });
