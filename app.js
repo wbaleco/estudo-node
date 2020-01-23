@@ -16,7 +16,7 @@ app.get('/contato', (req, res) => {
     res.sendFile(__dirname + "/src/contato.html");
 });
 
-const sequelize = new Sequelize('gerenciadorfinanceiro', 'wbaleco', 'B@rB@r@1997', {
+const sequelize = new Sequelize('gerenciadorfinanceiro', 'nome-usuário', 'senha', {
     host: 'localhost',
     dialect: 'mysql'
 });
