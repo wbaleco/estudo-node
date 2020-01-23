@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const Sequelize = require('sequelize');
+const DataTypes = require('sequelize');
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/src/home.html");
@@ -21,13 +22,24 @@ const sequelize = new Sequelize('gerenciadorfinanceiro', 'wbaleco', 'B@rB@r@1997
 });
 
 sequelize.authenticate().then(function(err) {
-    console.log('Connection has been established successfully.');
+    console.log('Conexão realizada com sucesso.');
 
 }).catch(function(error) {
-    console.error('Unable to connect to the database:', error);
+    console.error('Erro ao tentar conectar com banco:', error);
 });
 
+const User = sequelize.define('pagamentos', {
+    // Model attributes are defined here
+    nome: {
+        type: DataTypes.STRING,
 
+    },
+    valor: {
+        type: DataTypes.DOUBLE
+
+    }
+
+});
 
 
 /* const connection = mysql.createConnection({
