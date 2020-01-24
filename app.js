@@ -16,7 +16,7 @@ app.get('/contato', (req, res) => {
     res.sendFile(__dirname + "/src/contato.html");
 });
 
-const sequelize = new Sequelize('gerenciadorfinanceiro', 'nome-usuário', 'senha', {
+const sequelize = new Sequelize('gerenciadorfinanceiro', 'wbaleco', 'B@rB@r@1997', {
     host: 'localhost',
     dialect: 'mysql'
 });
@@ -41,7 +41,12 @@ const Pagamento = sequelize.define('pagamentos', {
 
 });
 
-Pagamento.sync({ force: true });
+Pagamento.create({
+    nome: "Energia",
+    valor: "350"
+});
+//Esta linha quando executada cria a tabela
+//Pagamento.sync({ force: true });
 
 
 /* const connection = mysql.createConnection({
