@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
-const pagamento = require('./models/Pagamento');
+const Pagamento = require('./models/Pagamento');
 
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
+const Moment = require('moment');
 
-app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.engine('handlebars', handlebars({
+    defaultLayout: 'main',
+    helpers: {
+        formatDate: (date) => {
+            return Moment(date).format('DD/MM/YYYY');
+        }
+
+    }
+}));
 app.set('view engine', 'handlebars');
 
 //Configuração body-parser
@@ -15,7 +24,11 @@ app.use(bodyParser.json());
 //Rotas
 
 app.get('/listar-pagamento', (req, res) => {
-    res.render('listar-pagamento');
+    Pagamento.findAll().then(function(pagamentos) {
+        res.render('listar-pagamento', { pagamentos: pagamentos });
+    });
+
+
 });
 
 app.get('/add-pagamento', (req, res) => {
@@ -28,7 +41,7 @@ app.get('/contato', (req, res) => {
 
 app.post('/cad-pagamento', (req, res) => {
 
-    pagamento.create({
+    Pagamento.create({
         nome: req.body.nome,
         valor: req.body.valor
     }).then(() => {
