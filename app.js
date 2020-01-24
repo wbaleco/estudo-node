@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const pagamento = require('./models/Pagamento');
 
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -26,7 +27,16 @@ app.get('/contato', (req, res) => {
 });
 
 app.post('/cad-pagamento', (req, res) => {
-    res.send("Nome: " + req.body.nome + "Valor: " + req.body.valor);
+
+    pagamento.create({
+        nome: req.body.nome,
+        valor: req.body.valor
+    }).then(() => {
+        res.send("Pagamento cadastrado com sucesso");
+    }).catch((err) => {
+        res.send("Erro ao tentar cadastrar pagamento" + err);
+    });
+    //res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>");
 });
 
 /* const sequelize = new Sequelize('gerenciadorfinanceiro', 'wbaleco', 'B@rB@r@1997', {
