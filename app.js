@@ -32,7 +32,8 @@ app.post('/cad-pagamento', (req, res) => {
         nome: req.body.nome,
         valor: req.body.valor
     }).then(() => {
-        res.send("Pagamento cadastrado com sucesso");
+        res.redirect('/listar-pagamento');
+        //res.send("Pagamento cadastrado com sucesso");
     }).catch((err) => {
         res.send("Erro ao tentar cadastrar pagamento" + err);
     });
