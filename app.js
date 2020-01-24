@@ -24,7 +24,9 @@ app.use(bodyParser.json());
 //Rotas
 
 app.get('/listar-pagamento', (req, res) => {
-    Pagamento.findAll().then(function(pagamentos) {
+    Pagamento.findAll({ order: [
+            ['id', 'DESC']
+        ] }).then(function(pagamentos) {
         res.render('listar-pagamento', { pagamentos: pagamentos });
     });
 
