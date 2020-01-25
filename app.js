@@ -24,9 +24,11 @@ app.use(bodyParser.json());
 //Rotas
 
 app.get('/listar-pagamento', (req, res) => {
-    Pagamento.findAll({ order: [
+    Pagamento.findAll({
+        order: [
             ['id', 'DESC']
-        ] }).then(function(pagamentos) {
+        ]
+    }).then(function(pagamentos) {
         res.render('listar-pagamento', { pagamentos: pagamentos });
     });
 
@@ -53,6 +55,17 @@ app.post('/cad-pagamento', (req, res) => {
         res.send("Erro ao tentar cadastrar pagamento" + err);
     });
     //res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>");
+});
+
+app.get('/del-pagamento/:id', (req, res) => {
+    Pagamento.destroy({
+        where: { 'id': req.params.id }
+    }).then(() => {
+        res.redirect('/listar-pagamento');
+        //res.send("Pagamento excluido com sucesso");
+    }).catch((err) => {
+        res.send("Erro ao tentar excluir pagamento" + err);
+    });
 });
 
 /* const sequelize = new Sequelize('gerenciadorfinanceiro', 'wbaleco', 'B@rB@r@1997', {
