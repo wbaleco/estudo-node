@@ -1,14 +1,40 @@
-<h1>Listar Pagamentos</h1>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Listar pagamento</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="/add-pagamento">
+            <button type="button" class="btn btn-sm btn-outline-success">
+                Novo Pagamento
+            </button>
+        </a>
+    </div>
+</div>
+<table class="table table-bordered table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Data</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each pagamentos}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{nome}}</td>
+            <td>{{valor}}</td>
+            <td>{{#formatDate createdAt}}{{/formatDate}}</td>
+            <td>
 
-{{#each pagamentos}}
-    ID: {{id}}<br>
-    Nome: {{nome}}<br>
-    Valor: {{valor}}<br>
-    Data cadastro: {{#formatDate createdAt}}{{/formatDate}}<br>
-    <hr> 
-    <a href="/add-pagamento"><button type="submit">Cadastrar</button></a>    
-    <a href="/visu-pagamento/{{id}}"><button type="submit">Visualizar</button></a> 
-    <a href="/edit-pagamento/{{id}}"><button type="submit">Alterar</button></a>
-    <a href="/del-pagamento/{{id}}"><button type="submit">Deletar</button></a>
-    <hr>
-{{/each}}
+                <a href="/visu-pagamento/{{id}}"><button type="button"
+                        class="btn btn-sm btn-outline-primary">Visualizar</button></a>
+                <a href="/edit-pagamento/{{id}}"><button type="button"
+                        class="btn btn-sm btn-outline-warning">Editar</button></a>
+                <a href="/del-pagamento/{{id}}"><button type="button"
+                        class="btn btn-sm btn-outline-danger">Apagar</button></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
