@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const Moment = require('moment');
 const session = require('express-session');
 const flash = require('connect-flash');
+const path = require("path");
 
 app.engine('handlebars', handlebars({
     defaultLayout: 'main',
@@ -36,7 +37,8 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash("success_msg");
     res.locals.error_msg = req.flash("error_msg");
     next();
-})
+});
+app.use(express.static(path.join(__dirname, "public")));
 
 //Rotas
 
