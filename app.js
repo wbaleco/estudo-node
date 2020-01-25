@@ -59,6 +59,35 @@ app.get('/add-pagamento', (req, res) => {
 app.get('/contato', (req, res) => {
     res.render("contato");
 });
+//Carregar formulário editar de pagamento
+app.get('/edit-pagamento/:id', function(req, res) {
+    Pagamento.findByPk(req.params.id)
+        .then(post => {
+            res.render('edit-pagamento', {
+                id: req.params.id,
+                nome: post.nome,
+                valor: post.valor
+            });
+        }).catch(function(erro) {
+            req.flash("error_msg", "Erro: Pagamento não encontrado!")
+        });
+});
+
+//Editar no banco de dados o pagamento
+app.post('/update-pagamento/:id', function(req, res) {
+    Pagamento.update({
+        nome: req.body.nome,
+        valor: req.body.valor
+    }, {
+        where: { id: req.params.id }
+    }).then(function() {
+        req.flash("success_msg", "Pagamento editado com sucesso")
+        res.redirect('/listar-pagamento')
+    }).catch(function(erro) {
+        req.flash("error_msg", "Erro: Pagamento não foi editado com sucesso!")
+    })
+
+})
 
 app.post('/cad-pagamento', (req, res) => {
 
