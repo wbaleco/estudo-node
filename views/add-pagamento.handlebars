@@ -1,20 +1,29 @@
-{{>_header}}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Gerenciador Financeiro</h1>
+    <h3>Cadastrar Pagamento</h3>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        
+        <a class="btn btn-sm btn-outline-primary" href="/edit-pagamento/{{id}}" role="button">Editar Pagamento</a>
+
+
+    </div>
+</div>
 <form action="cad-pagamento" method="post">
 
     <div class="form-group row">
-    <label for="nome" class="col-sm-2 col-form-label">Nome</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o nome do pagamento">
+        <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o nome do pagamento">
+        </div>
     </div>
-  </div>
-   <div class="form-group row">
-    <label for="valor" class="col-sm-2 col-form-label">Valor</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="valor" name="valor" placeholder="Informe qual o valor">
+    <div class="form-group row">
+        <label for="valor" class="col-sm-2 col-form-label">Valor</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="valor" name="valor" placeholder="Informe qual o valor">
+        </div>
     </div>
-  </div>
 
     <hr>
     <button class="btn btn-sm btn-outline-success" type="submit">Cadastrar</button>
-    
+
 </form>

@@ -1,10 +1,15 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Gerenciador Financeiro</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="/listar-pagamento">
+         <a href="/add-pagamento">
             <button type="button" class="btn btn-sm btn-outline-success">
-                Listar
+                Novo Pagamento
             </button>
         </a>
+        <a href="/visu-pagamento/{{id}}"><button type="button"
+                class="btn btn-sm btn-outline-primary">Visualizar</button></a>
+        <a href="/edit-pagamento/{{id}}"><button type="button"
+                class="btn btn-sm btn-outline-warning">Editar</button></a>
+        <a href="/del-pagamento/{{id}}"><button type="button" class="btn btn-sm btn-outline-danger">Apagar</button></a>
     </div>
 </div>
