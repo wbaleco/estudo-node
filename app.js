@@ -105,6 +105,19 @@ app.post('/cad-pagamento', (req, res) => {
     //res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>");
 });
 
+//Visualizar detalhes do registro
+app.get('/visu-pagamento/:id', (req, res) => {
+    Pagamento.findByPk(req.params.id).then(post => {
+        res.render('visu-pagamento', {
+            id: req.params.id,
+            nome: post.nome,
+            valor: post.valor
+        });
+    }).catch((err) => {
+        req.flash("error_msg", "Erro ao tentar visualizar pagamento")
+    });
+})
+
 app.get('/del-pagamento/:id', (req, res) => {
     Pagamento.destroy({
         where: { 'id': req.params.id }

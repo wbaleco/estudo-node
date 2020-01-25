@@ -5,8 +5,10 @@
     Nome: {{nome}}<br>
     Valor: {{valor}}<br>
     Data cadastro: {{#formatDate createdAt}}{{/formatDate}}<br>
-    <hr>     
-    <a href="/del-pagamento/{{id}}"><button type="submit">Deletar</button></a>
+    <hr> 
+    <a href="/add-pagamento"><button type="submit">Cadastrar</button></a>    
+    <a href="/visu-pagamento/{{id}}"><button type="submit">Visualizar</button></a> 
     <a href="/edit-pagamento/{{id}}"><button type="submit">Alterar</button></a>
+    <a href="/del-pagamento/{{id}}"><button type="submit">Deletar</button></a>
     <hr>
 {{/each}}
